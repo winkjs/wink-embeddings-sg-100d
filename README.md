@@ -7,5 +7,12 @@ This pre-trained 100-dimensional English word embedding set is specifically opti
 ## Need Help?
 If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/winkjs/wink-embeddings-sg-100d/issues).
 
-## About wink
-[Wink](https://winkjs.org/) is a family of open source packages for **Natural Language Processing**, **Machine Learning** and **Statistical Analysis** in NodeJS. The code is **thoroughly documented** for easy human comprehension and has a **test coverage of ~100%** for reliability to build production grade solutions.
+
+## About winkJS
+[WinkJS](https://winkjs.org/) is a family of open source packages for **Natural Language Processing**, **Machine Learning**, and **Statistical Analysis** in NodeJS. The code is **thoroughly documented** for easy human comprehension and has a **test coverage of ~100%** for reliability to build production grade solutions.
+
+## Copyright & License
+
+**Wink NLP** is copyright 2017-23 [GRAYPE Systems Private Limited](https://graype.in/).
+
+It is licensed under the terms of the MIT License.
