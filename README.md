@@ -23,7 +23,7 @@ npm install wink-embeddings-sg-100d --save
 ```
 
 ### Example
-We start by requiring the **wink-nlp** package and the **wink-eng-lite-web-model**. Then we instantiate wink-nlp using the language model:
+We start by requiring the **wink-nlp** package, the **wink-eng-lite-web-model** and the **wink-embeddings-sg-100d**. Then we instantiate wink-nlp using the language model and the embeddings:
 
 ```javascript
 // Load wink-nlp package.
@@ -71,6 +71,12 @@ for ( let i = 0; i < v.length; i += 1 ) {
     }
 }
 ```
+The output of the above example is visually illustrated below:
+<table><tr><td>
+<img src="https://github.com/winkjs/wink-embeddings-sg-100d/assets/29990/743ca8e1-6f33-40f4-80af-4f58b797e343" width="300" align="left" />
+</td></tr></table>
+
+<br/>
 
 ## Need Help?
 If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/winkjs/wink-embeddings-sg-100d/issues).
