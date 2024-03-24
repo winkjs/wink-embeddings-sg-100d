@@ -18,7 +18,7 @@ The model must be installed along with the [wink-nlp](https://github.com/winkjs/
 npm install wink-nlp --save
 # Install wink-eng-lite-web-model
 npm install wink-eng-lite-web-model --save
-# Install install wink-embeddings-sg-100d
+# Install wink-embeddings-sg-100d
 npm install wink-embeddings-sg-100d --save
 ```
 
