@@ -23,7 +23,7 @@ npm install wink-embeddings-sg-100d --save
 ```
 
 ### Example
-We start by requiring the **wink-nlp** package, the **wink-eng-lite-web-model** and the **wink-embeddings-sg-100d**. Then we instantiate wink-nlp using the language model and the embeddings:
+The code below computes the similarities between all pairs of four sentences by obtaining their vectors and using cosine similarity:
 
 ```javascript
 // Load wink-nlp package.
@@ -41,42 +41,44 @@ const nlp = winkNLP( model, [ 'sbd' ], vectors );
 const its = nlp.its;
 // Obtain "as" reducer helper to reduce a collection.
 const as = nlp.as;
-// The following text contains 4-sentences, where the first
+// The following text contains 4-sentences, where the first 
 // two and the last two have high similarity.
 const text = `The cat rested on the carpet. The kitten slept on the rug.
 The table was in the drawing room. The desk was in the study room.`;
 // This will hold the array of vectors for each sentence.
 const v = [];
+// This will hold sentence pairs and their similarities.
+const similarities = [];
 // Run the nlp pipe.
 const doc = nlp.readDoc( text );
 // Compute each sentence's embedding and fill in "v[i]".
 // Only use words and ignore stop words.
 doc
-    .sentences()
-    .each( ( s, k ) => {
-      v[ k ] = s
-        .tokens()
-        .filter( (t) => (t.out(its.type) === 'word' && !t.out(its.stopWordFlag)))
-        .out(its.value, as.vector);
-    })
-// Compute & print similarity for each unique pair.
+  .sentences()
+  .each( ( s, k ) => {
+    v[ k ] = s
+      .tokens()
+      .filter( (t) => (t.out(its.type) === 'word' && !t.out(its.stopWordFlag)))
+      .out(its.value, as.vector);  
+  })
+// Compute & save similarity for all the pairs.
 for ( let i = 0; i < v.length; i += 1 ) {
-    for ( let j = i; j < v.length; j += 1 ) {
-        if ( i !== j )
-          console.log(
-            doc.sentences().itemAt( i ).out(), ' & ',
-            doc.sentences().itemAt( j ).out(),
-            +similarity.vector.cosine( v[ i ], v[ j ] ).toFixed( 2 )
-          );
-    }
+  for ( let j = 0; j < v.length; j += 1 ) {
+      similarities.push( 
+        {sentence1: `${i+1}. ${doc.sentences().itemAt( i ).out()}`, sentence2: `${j+1}. ${doc.sentences().itemAt( j ).out()}`, similarity: `${similarity.vector.cosine( v[ i ], v[ j ] ).toFixed( 2 )}`}
+      );
+  }
 }
 ```
-The output of the above example is visually illustrated below:
+The output i.e. the `similarities` array, of the above example is visually illustrated below:
 <table><tr><td>
-<img src="https://github.com/winkjs/wink-embeddings-sg-100d/assets/29990/743ca8e1-6f33-40f4-80af-4f58b797e343" width="300" align="left" />
+    <img width="658" alt="wink-nlp-word-embeddings" src="https://github.com/winkjs/wink-embeddings-sg-100d/assets/29990/0e802d25-a243-4e81-bf48-713ddb8e8bc6">
 </td></tr></table>
 
+Explore more in the "[How to use word embedding with winkNLP?](https://observablehq.com/@winkjs/how-to-use-word-embedding-with-winknlp)" Observable notebook.
+
 <br/>
+
 
 ## Need Help?
 If you spot a bug and the same has not yet been reported, raise a new [issue](https://github.com/winkjs/wink-embeddings-sg-100d/issues).
